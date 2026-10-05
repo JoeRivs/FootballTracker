@@ -10,7 +10,7 @@ export default function Scores() {
   return (
     <Section title="Around the League">
       {!data?.length ? (
-        <div className="card p-8 text-center text-ravens-gray">
+        <div className="card p-8 text-center text-muted">
           No games on the board right now — check back on game day.
         </div>
       ) : (
@@ -21,9 +21,9 @@ export default function Scores() {
                 {g.state === "in" ? (
                   <Pill tone="live">LIVE</Pill>
                 ) : (
-                  <span className="text-xs text-ravens-gray">{g.status}</span>
+                  <span className="text-xs text-muted">{g.status}</span>
                 )}
-                <span className="text-xs text-ravens-gray">{fmtDate(g.date, { month: "short", day: "numeric" })}</span>
+                <span className="text-xs text-muted">{fmtDate(g.date, { month: "short", day: "numeric" })}</span>
               </div>
               <div className="space-y-2">
                 {g.teams.map((tm, i) => (
@@ -32,7 +32,7 @@ export default function Scores() {
                     <span className={`flex-1 font-semibold ${tm.winner ? "text-white" : "text-white/60"}`}>
                       {tm.displayName}
                     </span>
-                    <span className={`text-lg font-black tabular-nums ${tm.winner ? "text-ravens-gold" : "text-white/60"}`}>
+                    <span className={`text-lg font-black tabular-nums ${tm.winner ? "text-team-accent" : "text-white/60"}`}>
                       {tm.score ?? "—"}
                     </span>
                   </div>

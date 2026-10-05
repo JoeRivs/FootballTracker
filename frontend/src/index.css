@@ -3,9 +3,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Team colors, overwritten by src/lib/theme.js. Defaults are the Ravens. */
+:root {
+  --team-primary: 41 18 111;
+  --team-accent: 158 124 12;
+  --team-glow: 41 18 111;
+  --team-deep: 22 9 59;
+  --team-shade: 12 5 33;
+}
+
 body {
-  @apply bg-ravens-deep text-gray-100 antialiased;
-  background-image: radial-gradient(circle at 20% -10%, #2d1d7a 0%, #1a1142 45%, #120c2e 100%);
+  @apply bg-team-deep text-gray-100 antialiased;
+  background-image: radial-gradient(
+    circle at 20% -10%,
+    rgb(var(--team-glow)) 0%,
+    rgb(var(--team-deep)) 45%,
+    rgb(var(--team-shade)) 100%
+  );
   background-attachment: fixed;
   min-height: 100vh;
 }

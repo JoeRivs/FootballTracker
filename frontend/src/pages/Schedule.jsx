@@ -16,21 +16,21 @@ export default function Schedule() {
   return (
     <Section
       title={`${data.season || ""} Schedule`}
-      action={<span className="text-sm text-ravens-gray">{wins}–{losses} so far</span>}
+      action={<span className="text-sm text-muted">{wins}–{losses} so far</span>}
     >
       <div className="space-y-2">
         {games.map((g) => (
           <div key={g.id} className="card flex items-center gap-4 p-4">
-            <div className="w-16 shrink-0 text-xs uppercase tracking-wide text-ravens-gray">
+            <div className="w-16 shrink-0 text-xs uppercase tracking-wide text-muted">
               {g.week}
             </div>
             <TeamLogo src={g.opponent?.logo} alt={g.opponent?.displayName} size={40} />
             <div className="min-w-0 flex-1">
               <div className="font-semibold">
-                <span className="text-ravens-gray">{g.homeAway === "home" ? "vs" : "@"}</span>{" "}
+                <span className="text-muted">{g.homeAway === "home" ? "vs" : "@"}</span>{" "}
                 {g.opponent?.displayName || "TBD"}
               </div>
-              <div className="text-xs text-ravens-gray">
+              <div className="text-xs text-muted">
                 {fmtDate(g.date)} {g.broadcast ? `· ${g.broadcast}` : ""} {g.venue ? `· ${g.venue}` : ""}
               </div>
             </div>
@@ -49,7 +49,7 @@ export default function Schedule() {
           </div>
         ))}
         {data.byeWeek && (
-          <div className="card p-3 text-center text-sm text-ravens-gray">
+          <div className="card p-3 text-center text-sm text-muted">
             Bye week: Week {data.byeWeek}
           </div>
         )}

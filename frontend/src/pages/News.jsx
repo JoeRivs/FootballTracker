@@ -22,7 +22,7 @@ export default function News() {
           key={key}
           onClick={() => setScope(key)}
           className={`rounded-md px-3 py-1 text-sm font-semibold transition ${
-            scope === key ? "bg-ravens-gold text-black" : "text-white/70 hover:text-white"
+            scope === key ? "bg-team-accent text-black" : "text-white/70 hover:text-white"
           }`}
         >
           {label}
@@ -45,19 +45,19 @@ export default function News() {
               href={n.link}
               target="_blank"
               rel="noreferrer"
-              className="card group flex flex-col overflow-hidden transition hover:border-ravens-gold/40"
+              className="card group flex flex-col overflow-hidden transition hover:border-team-accent/40"
             >
               {n.image && <img src={n.image} alt="" className="h-44 w-full object-cover" />}
               <div className="flex flex-1 flex-col gap-2 p-4">
                 <div className="flex items-center gap-2">
                   {n.type && <Pill tone="gold">{n.type}</Pill>}
-                  <span className="text-xs text-ravens-gray">{timeAgo(n.published)}</span>
+                  <span className="text-xs text-muted">{timeAgo(n.published)}</span>
                 </div>
-                <h3 className="font-bold leading-snug group-hover:text-ravens-gold">{n.headline}</h3>
+                <h3 className="font-bold leading-snug group-hover:text-team-accent">{n.headline}</h3>
                 {n.description && (
-                  <p className="line-clamp-3 text-sm text-ravens-gray">{n.description}</p>
+                  <p className="line-clamp-3 text-sm text-muted">{n.description}</p>
                 )}
-                {n.byline && <span className="mt-auto text-xs text-ravens-gray">{n.byline}</span>}
+                {n.byline && <span className="mt-auto text-xs text-muted">{n.byline}</span>}
               </div>
             </a>
           ))}

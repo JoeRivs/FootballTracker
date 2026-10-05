@@ -12,7 +12,7 @@ function Board({ board }) {
     <div className="card flex flex-col overflow-hidden">
       <div className="flex items-baseline justify-between border-b border-white/10 px-4 py-3">
         <h3 className="font-bold text-white">{board.title}</h3>
-        <span className="text-xs uppercase tracking-wide text-ravens-gray">{board.statLabel}</span>
+        <span className="text-xs uppercase tracking-wide text-muted">{board.statLabel}</span>
       </div>
       <ol className="divide-y divide-white/5">
         {rows.map((p) => (
@@ -21,13 +21,13 @@ function Board({ board }) {
               to={p.id ? `/player/${p.id}` : "#"}
               className="flex items-center gap-3 px-4 py-2 transition hover:bg-white/5"
             >
-              <span className={`w-5 text-center text-sm font-black ${p.rank === 1 ? "text-ravens-gold" : "text-ravens-gray"}`}>
+              <span className={`w-5 text-center text-sm font-black ${p.rank === 1 ? "text-team-accent" : "text-muted"}`}>
                 {p.rank}
               </span>
               <TeamLogo src={p.headshot} alt={p.name} size={32} />
               <div className="min-w-0 flex-1">
                 <div className="truncate text-sm font-semibold">{p.name}</div>
-                <div className="flex items-center gap-1 text-xs text-ravens-gray">
+                <div className="flex items-center gap-1 text-xs text-muted">
                   {p.teamLogo && <img src={p.teamLogo} alt="" className="h-3.5 w-3.5" />}
                   {p.team} · {p.position}
                 </div>
@@ -40,7 +40,7 @@ function Board({ board }) {
       {board.leaders.length > 5 && (
         <button
           onClick={() => setOpen((o) => !o)}
-          className="border-t border-white/10 py-2 text-xs font-semibold text-ravens-gold hover:bg-white/5"
+          className="border-t border-white/10 py-2 text-xs font-semibold text-team-accent hover:bg-white/5"
         >
           {open ? "Show less" : `Show top ${board.leaders.length}`}
         </button>
@@ -62,7 +62,7 @@ export default function Leaders() {
   return (
     <div className="space-y-8">
       <Section title={`${data?.season || ""} League Leaders`}>
-        <p className="text-sm text-ravens-gray">
+        <p className="text-sm text-muted">
           Every team, every position. Click any player for their profile.
         </p>
       </Section>
@@ -78,7 +78,7 @@ export default function Leaders() {
       ))}
 
       {!boards.length && (
-        <div className="card p-8 text-center text-ravens-gray">
+        <div className="card p-8 text-center text-muted">
           No leader data for {season} yet — the season may not have started.
         </div>
       )}

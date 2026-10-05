@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "./api.js";
+import { applyTeamTheme } from "./theme.js";
 
 // Global app state: which team and which season the whole app is showing.
 // Changing either re-renders every page (they read these from context).
@@ -50,6 +51,11 @@ export function AppProvider({ children }) {
   };
 
   const activeTeam = teams.find((t) => t.slug === team) || null;
+
+  // Re-skin the whole app in the selected team's colors.
+  useEffect(() => {
+    if (activeTeam) applyTeamTheme(activeTeam);
+  }, [activeTeam]);
   const isCurrent = !season || season === currentSeason;
 
   const value = {
@@ -66,8 +72,8 @@ export function AppProvider({ children }) {
 
   if (!ready) {
     return (
-      <div className="flex min-h-screen items-center justify-center text-ravens-gray">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-ravens-gold" />
+      <div className="flex min-h-screen items-center justify-center text-muted">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-team-accent" />
       </div>
     );
   }

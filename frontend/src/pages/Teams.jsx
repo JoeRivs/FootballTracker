@@ -15,7 +15,7 @@ export default function Teams() {
 
   return (
     <Section title="Select a Team">
-      <p className="mb-2 text-sm text-ravens-gray">
+      <p className="mb-2 text-sm text-muted">
         Pick any of the 32 NFL teams — it becomes the focus across every page.
       </p>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
@@ -25,15 +25,15 @@ export default function Teams() {
             <button
               key={t.slug}
               onClick={() => pick(t.slug)}
-              className={`card flex items-center gap-3 p-4 text-left transition hover:border-ravens-gold/50 ${
-                active ? "border-ravens-gold ring-1 ring-ravens-gold" : ""
+              className={`card flex items-center gap-3 p-4 text-left transition hover:border-team-accent/50 ${
+                active ? "border-team-accent ring-1 ring-team-accent" : ""
               }`}
               style={active ? { background: `linear-gradient(120deg, ${t.color}55, transparent)` } : undefined}
             >
               <TeamLogo src={t.logo} alt={t.displayName} size={44} />
               <div className="min-w-0">
                 <div className="truncate font-bold leading-tight">{t.shortName}</div>
-                <div className="truncate text-xs text-ravens-gray">{t.location}</div>
+                <div className="truncate text-xs text-muted">{t.location}</div>
               </div>
             </button>
           );

@@ -24,7 +24,7 @@ export default function Player() {
 
   return (
     <div className="space-y-6">
-      <Link to="/roster" className="text-sm text-ravens-gold hover:underline">
+      <Link to="/roster" className="text-sm text-team-accent hover:underline">
         ← Back to roster
       </Link>
 
@@ -32,7 +32,7 @@ export default function Player() {
         <TeamLogo src={p.headshot} alt={p.name} size={110} />
         <div>
           <h1 className="text-3xl font-black">{p.name}</h1>
-          <p className="text-ravens-gray">
+          <p className="text-muted">
             {p.position} · {p.team}
           </p>
         </div>
@@ -41,7 +41,7 @@ export default function Player() {
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {facts.map(([label, value]) => (
           <div key={label} className="card p-4">
-            <div className="text-xs uppercase tracking-wide text-ravens-gray">{label}</div>
+            <div className="text-xs uppercase tracking-wide text-muted">{label}</div>
             <div className="text-lg font-bold">{value}</div>
           </div>
         ))}
@@ -52,9 +52,9 @@ export default function Player() {
           <div className="space-y-4">
             {p.statistics.map((block, i) => (
               <div key={i} className="card overflow-x-auto">
-                <div className="px-4 py-2 text-sm font-bold text-ravens-gold">{block.name}</div>
+                <div className="px-4 py-2 text-sm font-bold text-team-accent">{block.name}</div>
                 <table className="w-full text-sm">
-                  <thead className="text-xs text-ravens-gray">
+                  <thead className="text-xs text-muted">
                     <tr className="border-b border-white/10">
                       {block.labels?.map((l, j) => (
                         <th key={j} className="px-3 py-2 text-center font-medium">{l}</th>
@@ -84,10 +84,10 @@ export default function Player() {
                 href={n.link}
                 target="_blank"
                 rel="noreferrer"
-                className="card flex items-center justify-between gap-4 p-4 transition hover:border-ravens-gold/40"
+                className="card flex items-center justify-between gap-4 p-4 transition hover:border-team-accent/40"
               >
                 <span className="font-medium">{n.headline}</span>
-                <span className="shrink-0 text-xs text-ravens-gray">{timeAgo(n.published)}</span>
+                <span className="shrink-0 text-xs text-muted">{timeAgo(n.published)}</span>
               </a>
             ))}
           </div>

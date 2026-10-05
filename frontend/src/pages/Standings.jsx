@@ -20,11 +20,11 @@ export default function Standings() {
             <div className="grid gap-4 md:grid-cols-2">
               {conf.divisions.map((div) => (
                 <div key={div.name} className="card overflow-hidden">
-                  <div className="bg-white/5 px-4 py-2 text-sm font-bold uppercase tracking-wide text-ravens-gold">
+                  <div className="bg-white/5 px-4 py-2 text-sm font-bold uppercase tracking-wide text-team-accent">
                     {div.name}
                   </div>
                   <table className="w-full text-sm">
-                    <thead className="text-xs text-ravens-gray">
+                    <thead className="text-xs text-muted">
                       <tr className="border-b border-white/10">
                         <th className="px-4 py-2 text-left font-medium">Team</th>
                         <th className="px-2 py-2 text-center font-medium">W</th>
@@ -41,12 +41,12 @@ export default function Standings() {
                         return (
                           <tr
                             key={row.team.id}
-                            className={`border-b border-white/5 ${mine ? "bg-ravens-gold/10" : ""}`}
+                            className={`border-b border-white/5 ${mine ? "bg-team-accent/10" : ""}`}
                           >
                             <td className="px-4 py-2">
                               <div className="flex items-center gap-2">
                                 <TeamLogo src={row.team.logo} alt={row.team.abbreviation} size={22} />
-                                <span className={mine ? "font-bold text-ravens-gold" : ""}>
+                                <span className={mine ? "font-bold text-team-accent" : ""}>
                                   {row.team.abbreviation}
                                 </span>
                               </div>
@@ -54,9 +54,9 @@ export default function Standings() {
                             <td className="px-2 py-2 text-center tabular-nums">{row.wins}</td>
                             <td className="px-2 py-2 text-center tabular-nums">{row.losses}</td>
                             <td className="px-2 py-2 text-center tabular-nums">{row.ties}</td>
-                            <td className="px-2 py-2 text-center tabular-nums text-ravens-gray">{row.pointsFor}</td>
-                            <td className="px-2 py-2 text-center tabular-nums text-ravens-gray">{row.pointsAgainst}</td>
-                            <td className="px-3 py-2 text-center tabular-nums text-ravens-gray">{row.streak}</td>
+                            <td className="px-2 py-2 text-center tabular-nums text-muted">{row.pointsFor}</td>
+                            <td className="px-2 py-2 text-center tabular-nums text-muted">{row.pointsAgainst}</td>
+                            <td className="px-3 py-2 text-center tabular-nums text-muted">{row.streak}</td>
                           </tr>
                         );
                       })}

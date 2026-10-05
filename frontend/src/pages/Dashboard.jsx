@@ -56,15 +56,15 @@ export default function Dashboard() {
             <div className="card flex items-center gap-4 p-5">
               <TeamLogo src={next.opponent?.logo} alt={next.opponent?.displayName} size={56} />
               <div className="flex-1">
-                <div className="text-xs uppercase tracking-wide text-ravens-gray">
+                <div className="text-xs uppercase tracking-wide text-muted">
                   {next.week} · {next.homeAway === "home" ? "vs" : "@"} {next.venue || ""}
                 </div>
                 <div className="text-lg font-bold">{next.opponent?.displayName}</div>
-                <div className="text-sm text-ravens-gray">{fmtDate(next.date)}</div>
+                <div className="text-sm text-muted">{fmtDate(next.date)}</div>
               </div>
             </div>
           ) : (
-            <div className="card p-5 text-ravens-gray">
+            <div className="card p-5 text-muted">
               {isCurrent ? "No upcoming game scheduled." : "Season complete — see the schedule for all results."}
             </div>
           )}
@@ -76,11 +76,11 @@ export default function Dashboard() {
             <div className="card flex items-center gap-4 p-5">
               <TeamLogo src={lastGame.opponent?.logo} alt={lastGame.opponent?.displayName} size={56} />
               <div className="flex-1">
-                <div className="text-xs uppercase tracking-wide text-ravens-gray">
+                <div className="text-xs uppercase tracking-wide text-muted">
                   {lastGame.week} · {lastGame.homeAway === "home" ? "vs" : "@"} {lastGame.opponent?.shortName}
                 </div>
                 <div className="text-lg font-bold">{lastGame.name}</div>
-                <div className="text-sm text-ravens-gray">{fmtDate(lastGame.date, { month: "short", day: "numeric" })}</div>
+                <div className="text-sm text-muted">{fmtDate(lastGame.date, { month: "short", day: "numeric" })}</div>
               </div>
               {lastGame.result && (
                 <div className="text-right">
@@ -94,7 +94,7 @@ export default function Dashboard() {
               )}
             </div>
           ) : (
-            <div className="card p-5 text-ravens-gray">No completed games yet this season.</div>
+            <div className="card p-5 text-muted">No completed games yet this season.</div>
           )}
         </Section>
       </div>
@@ -102,7 +102,7 @@ export default function Dashboard() {
       {/* Latest news */}
       <Section
         title="Latest News"
-        action={<Link to="/news" className="text-sm font-semibold text-ravens-gold hover:underline">View all →</Link>}
+        action={<Link to="/news" className="text-sm font-semibold text-team-accent hover:underline">View all →</Link>}
       >
         {news.loading ? (
           <Spinner label="Loading news…" />
@@ -116,14 +116,14 @@ export default function Dashboard() {
                 href={n.link}
                 target="_blank"
                 rel="noreferrer"
-                className="card group flex gap-3 overflow-hidden p-3 transition hover:border-ravens-gold/40"
+                className="card group flex gap-3 overflow-hidden p-3 transition hover:border-team-accent/40"
               >
                 {n.image && (
                   <img src={n.image} alt="" className="h-20 w-28 shrink-0 rounded-lg object-cover" />
                 )}
                 <div className="min-w-0">
-                  <div className="line-clamp-2 font-semibold group-hover:text-ravens-gold">{n.headline}</div>
-                  <div className="mt-1 text-xs text-ravens-gray">{timeAgo(n.published)}</div>
+                  <div className="line-clamp-2 font-semibold group-hover:text-team-accent">{n.headline}</div>
+                  <div className="mt-1 text-xs text-muted">{timeAgo(n.published)}</div>
                 </div>
               </a>
             ))}
