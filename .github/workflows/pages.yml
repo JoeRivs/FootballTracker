@@ -1,0 +1,51 @@
+# Builds the frontend as a static site and publishes it to GitHub Pages:
+# https://joerivs.github.io/FootballTracker/
+# Pages can't run the FastAPI backend, so this build calls ESPN directly from
+# the browser (VITE_DATA_SOURCE=espn — see frontend/src/lib/espn.js).
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run build -- --base=/FootballTracker/
+        env:
+          VITE_DATA_SOURCE: espn
+      # Pages has no SPA fallback; serving index.html as the 404 page lets
+      # deep links like /FootballTracker/roster load the app.
+      - run: cp dist/index.html dist/404.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

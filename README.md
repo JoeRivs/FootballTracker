@@ -46,6 +46,16 @@ npm install
 npm run dev      # http://localhost:5173 (proxies /api -> :8000)
 ```
 
+## GitHub Pages (live site)
+
+Hosted at **https://joerivs.github.io/FootballTracker/**. Every push to `main`
+rebuilds and redeploys it via `.github/workflows/pages.yml`.
+
+Pages only serves static files, so that build doesn't use the FastAPI backend:
+it sets `VITE_DATA_SOURCE=espn` and the browser calls ESPN directly through
+`frontend/src/lib/espn.js`, a JavaScript port of `backend/app/espn.py` (keep
+the two in sync). Docker and local dev are unaffected and still use `/api`.
+
 ## Features
 
 - **Any team, any season** — header pickers (and a Teams grid) switch the

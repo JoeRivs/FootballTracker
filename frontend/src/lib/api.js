@@ -1,5 +1,9 @@
+import { espnApi } from "./espn.js";
+
 // Single place that talks to the backend. Everything goes through /api which is
 // proxied to FastAPI (vite proxy in dev, nginx in the Docker image).
+// The static GitHub Pages build sets VITE_DATA_SOURCE=espn and calls ESPN
+// directly from the browser instead (see espn.js).
 const BASE = "/api";
 
 async function get(path) {
@@ -21,7 +25,7 @@ function qs(params) {
 
 export const TEAM = "bal"; // default featured team
 
-export const api = {
+const backendApi = {
   teams: () => get(`/teams`),
   seasons: () => get(`/seasons`),
   team: (slug = TEAM, season) => get(`/teams/${slug}${qs({ season })}`),
@@ -34,3 +38,5 @@ export const api = {
   scoreboard: () => get(`/scoreboard`),
   player: (id) => get(`/players/${id}`),
 };
+
+export const api = import.meta.env.VITE_DATA_SOURCE === "espn" ? espnApi : backendApi;
